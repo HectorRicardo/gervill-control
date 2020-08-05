@@ -1,6 +1,6 @@
 final class MidiInDevice extends AbstractMidiDevice implements Runnable {
 
-    private Thread midiInThread = null;
+    private volatile Thread midiInThread;
 
     
 

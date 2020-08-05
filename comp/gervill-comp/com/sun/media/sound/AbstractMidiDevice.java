@@ -22,12 +22,12 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
 
     
 
-    private boolean open          = false;
+    private volatile boolean open;
     private int openRefCount;
 
         private List openKeepingObjects;
 
-        protected long id                   = 0;
+        protected volatile long id;
 
 
 
@@ -316,7 +316,7 @@ abstract class AbstractMidiDevice implements MidiDevice, ReferenceCountingDevice
     
 
         abstract class AbstractReceiver implements MidiDeviceReceiver {
-        private boolean open = true;
+        private volatile boolean open = true;
 
 
                 @Override

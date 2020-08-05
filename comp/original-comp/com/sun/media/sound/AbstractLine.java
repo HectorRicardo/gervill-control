@@ -3,7 +3,7 @@ abstract class AbstractLine implements Line {
     protected final Line.Info info;
     protected Control[] controls;
     AbstractMixer mixer;
-    private boolean open     = false;
+    private volatile boolean open;
     private final Vector listeners = new Vector();
 
         private static final Map<ThreadGroup, EventDispatcher> dispatchers =

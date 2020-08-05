@@ -83,17 +83,13 @@ public class Sequence {
 
 
         public boolean deleteTrack(Track track) {
-
-        synchronized(tracks) {
-
-            return tracks.removeElement(track);
-        }
+        return tracks.removeElement(track);
     }
 
 
         public Track[] getTracks() {
-
-        return (Track[]) tracks.toArray(new Track[tracks.size()]);
+        
+        return tracks.toArray(new Track[0]);
     }
 
 

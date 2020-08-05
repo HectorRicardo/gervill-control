@@ -19,10 +19,9 @@ abstract class AbstractDataLine extends AbstractLine implements DataLine {
     
     protected int bufferSize;
 
-    protected boolean running = false;
-    private boolean started = false;
-    private boolean active = false;
-
+    private volatile boolean running;
+    private volatile boolean started;
+    private volatile boolean active;
 
         protected AbstractDataLine(DataLine.Info info, AbstractMixer mixer, Control[] controls) {
         this(info, mixer, controls, null, AudioSystem.NOT_SPECIFIED);

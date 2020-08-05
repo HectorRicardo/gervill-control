@@ -35,13 +35,13 @@ final class RealTimeSequencer extends AbstractMidiDevice
 
         private final MidiUtils.TempoCache tempoCache = new MidiUtils.TempoCache();
 
-        private boolean running = false;
+        private volatile boolean running;
 
 
         private PlayThread playThread;
 
 
-        private boolean recording = false;
+        private volatile boolean recording;
 
 
         private final List recordingTracks = new ArrayList();

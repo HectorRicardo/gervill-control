@@ -1,4 +1,4 @@
-package impl;
+package gervilljava.impl;
 
 import gervill.javax.sound.sampled.AudioFormat;
 import gervill.javax.sound.sampled.Control;
@@ -8,43 +8,43 @@ import gervill.javax.sound.sampled.LineUnavailableException;
 import gervill.javax.sound.sampled.SourceDataLine;
 
 public class SourceDataLineImpl implements SourceDataLine {
-	
-	private final javax.sound.sampled.SourceDataLine realLine;
-	
-	private static javax.sound.sampled.AudioFormat convertToOriginalFormat(AudioFormat format) {
-    	javax.sound.sampled.AudioFormat.Encoding encoding = new javax.sound.sampled.AudioFormat.Encoding(format.getEncoding().toString());
-    	return new javax.sound.sampled.AudioFormat(encoding, format.getSampleRate(), format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(), format.getFrameRate(), format.isBigEndian(), format.properties());
-    }
-    
-    private static AudioFormat convertToNewFormat(javax.sound.sampled.AudioFormat format) {
-    	AudioFormat.Encoding encoding = new AudioFormat.Encoding(format.getEncoding().toString());
-    	return new AudioFormat(encoding, format.getSampleRate(), format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(), format.getFrameRate(), format.isBigEndian(), format.properties());
+
+    private final javax.sound.sampled.SourceDataLine realLine;
+
+    public SourceDataLineImpl(AudioFormat format) throws LineUnavailableException {
+        try {
+            realLine = javax.sound.sampled.AudioSystem.getSourceDataLine(convertToOriginalFormat(format));
+        } catch (javax.sound.sampled.LineUnavailableException e) {
+            throw new LineUnavailableException(e.getMessage());
+        }
     }
 
-	public SourceDataLineImpl(AudioFormat format) throws LineUnavailableException {
-		try {
-			realLine = javax.sound.sampled.AudioSystem.getSourceDataLine(convertToOriginalFormat(format));
-		} catch (javax.sound.sampled.LineUnavailableException e) {
-			throw new LineUnavailableException(e.getMessage());
-    	}
-	}
-	
-	@Override
+    private static javax.sound.sampled.AudioFormat convertToOriginalFormat(AudioFormat format) {
+        javax.sound.sampled.AudioFormat.Encoding encoding = new javax.sound.sampled.AudioFormat.Encoding(format.getEncoding().toString());
+        return new javax.sound.sampled.AudioFormat(encoding, format.getSampleRate(), format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(), format.getFrameRate(), format.isBigEndian(), format.properties());
+    }
+
+    private static AudioFormat convertToNewFormat(javax.sound.sampled.AudioFormat format) {
+        AudioFormat.Encoding encoding = new AudioFormat.Encoding(format.getEncoding().toString());
+        return new AudioFormat(encoding, format.getSampleRate(), format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(), format.getFrameRate(), format.isBigEndian(), format.properties());
+    }
+
+    @Override
     public void open(AudioFormat format, int bufferSize) throws LineUnavailableException {
-    	try {
-    		realLine.open(convertToOriginalFormat(format), bufferSize);
-    	} catch (javax.sound.sampled.LineUnavailableException e) {
-    		throw new LineUnavailableException(e.getMessage());
-    	}
+        try {
+            realLine.open(convertToOriginalFormat(format), bufferSize);
+        } catch (javax.sound.sampled.LineUnavailableException e) {
+            throw new LineUnavailableException(e.getMessage());
+        }
     }
 
     @Override
     public void open(AudioFormat format) throws LineUnavailableException {
-    	try {
-    		realLine.open(convertToOriginalFormat(format));
-    	} catch (javax.sound.sampled.LineUnavailableException e) {
-    		throw new LineUnavailableException(e.getMessage());
-    	}
+        try {
+            realLine.open(convertToOriginalFormat(format));
+        } catch (javax.sound.sampled.LineUnavailableException e) {
+            throw new LineUnavailableException(e.getMessage());
+        }
     }
 
     @Override
@@ -54,22 +54,22 @@ public class SourceDataLineImpl implements SourceDataLine {
 
     @Override
     public void drain() {
-    	realLine.drain();
+        realLine.drain();
     }
 
     @Override
     public void flush() {
-    	realLine.flush();
+        realLine.flush();
     }
 
     @Override
     public void start() {
-    	realLine.start();
+        realLine.start();
     }
 
     @Override
     public void stop() {
-    	realLine.stop();
+        realLine.stop();
     }
 
     @Override
@@ -124,16 +124,16 @@ public class SourceDataLineImpl implements SourceDataLine {
 
     @Override
     public void open() throws LineUnavailableException {
-    	try {
-    		realLine.open();
-    	} catch (javax.sound.sampled.LineUnavailableException e) {
-    		throw new LineUnavailableException(e.getMessage());
-    	}
+        try {
+            realLine.open();
+        } catch (javax.sound.sampled.LineUnavailableException e) {
+            throw new LineUnavailableException(e.getMessage());
+        }
     }
 
     @Override
     public void close() {
-    	realLine.close();
+        realLine.close();
     }
 
     @Override
@@ -158,11 +158,11 @@ public class SourceDataLineImpl implements SourceDataLine {
 
     @Override
     public void addLineListener(LineListener listener) {
-    	// realLine.addLineListener(listener);
+        // realLine.addLineListener(listener);
     }
 
     @Override
     public void removeLineListener(LineListener listener) {
-    	// realLine.removeLineListener(listener);
+        // realLine.removeLineListener(listener);
     }
 }

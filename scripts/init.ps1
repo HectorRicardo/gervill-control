@@ -1,5 +1,15 @@
 param([switch]$j, [switch]$a)
 
+#For PowerShell v3
+Function gig {
+  param(
+    [Parameter(Mandatory=$true)]
+    [string[]]$list
+  )
+  $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
+  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
+}
+
 if ($j -AND $a) {
     Throw "Either -j or -a should be used, but not both"
 }
@@ -23,13 +33,13 @@ if ($j) {
 	$deleteShortcut="delete-classes-java.lnk"
 	$modifyAudioSystemShortcut="modifyAudioSystem-java.lnk"
 	$mainAppFolder="gervilljava"
-	cmd.exe /c gi java,intellij+all,windows > .gitignore
+	gig java,eclipse,windows
 } elseif ($a) {
 	$basePath="app\src\main\java"
 	$deleteShortcut="delete-classes-android.lnk"
 	$modifyAudioSystemShortcut="modifyAudioSystem-android.lnk"
 	$mainAppFolder="gervillandroid"
-	cmd.exe /c gi android,AndroidStudio,windows > .gitignore
+	gig android,AndroidStudio,windows
 	
 	reset -sourcePath layout\ -destinationPath ..\res\layout\
 } else {

@@ -1,10 +1,9 @@
 param([switch]$j=$false, [switch]$a=$false)
 
-if ($j -AND -$a) {
+if ($j -AND $a) {
     Throw "Either -j or -a should be used, but not both"
 }
 
-$basePath = ""
 if ($j) {
 	$basePath="src"
 } elseif ($a) {
@@ -13,44 +12,56 @@ if ($j) {
 	Throw "Missing flag"
 }
 
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AiffFileFormat.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AiffFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AiffFileWriter.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AlawCodec.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AuFileFormat.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AuFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AuFileWriter.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AudioFileSoundbankReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\AudioFloatFormatConverter.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\DLSSoundbankReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\DataPusher.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\JARSoundbankReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\JavaSoundAudioClip.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\MidiOutDeviceProvider.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\ModelAbstractChannelMixer.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\ModelAbstractOscillator.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\ModelStandardDirector.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\PCMtoPCMCodec.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\RealTimeSequencer.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\RealTimeSequencerProvider.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SF2SoundbankReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SimpleInstrument.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SimpleSoundbank.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SoftMidiAudioFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SoftProvider.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SoftShortMessage.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\StandardMidiFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\StandardMidiFileWriter.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SunCodec.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SunFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\SunFileWriter.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\UlawCodec.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\WaveExtensibleFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\WaveFileFormat.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\WaveFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\WaveFileWriter.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\WaveFloatFileReader.java"
-Remove-Item "${basePath}\gervill\com\sun\media\sound\WaveFloatFileWriter.java"
-Remove-Item "${basePath}\gervill\java\applet\AudioClip.java"
-Remove-Item "${basePath}\gervill\javax\sound\sampled\EnumControl.java"
-Remove-Item "${basePath}\gervill\javax\sound\sampled\ReverbType.java"
+function delete {
+	param([string]$path)
+	
+	$finalPath="${basePath}\${path}"
+	
+	if (Test-Path $finalPath) {
+		Remove-Item $finalPath -Recurse
+	}
+}
+
+delete -path gervill\com\sun\media\sound\AiffFileFormat.java
+delete -path gervill\com\sun\media\sound\AiffFileReader.java
+delete -path gervill\com\sun\media\sound\AiffFileWriter.java
+delete -path gervill\com\sun\media\sound\AlawCodec.java
+delete -path gervill\com\sun\media\sound\AuFileFormat.java
+delete -path gervill\com\sun\media\sound\AuFileReader.java
+delete -path gervill\com\sun\media\sound\AuFileWriter.java
+delete -path gervill\com\sun\media\sound\AudioFileSoundbankReader.java
+delete -path gervill\com\sun\media\sound\AudioFloatFormatConverter.java
+delete -path gervill\com\sun\media\sound\DLSSoundbankReader.java
+delete -path gervill\com\sun\media\sound\DataPusher.java
+delete -path gervill\com\sun\media\sound\JARSoundbankReader.java
+delete -path gervill\com\sun\media\sound\JavaSoundAudioClip.java
+delete -path gervill\com\sun\media\sound\MidiOutDeviceProvider.java
+delete -path gervill\com\sun\media\sound\ModelAbstractChannelMixer.java
+delete -path gervill\com\sun\media\sound\ModelAbstractOscillator.java
+delete -path gervill\com\sun\media\sound\ModelStandardDirector.java
+delete -path gervill\com\sun\media\sound\PCMtoPCMCodec.java
+delete -path gervill\com\sun\media\sound\RealTimeSequencer.java
+delete -path gervill\com\sun\media\sound\RealTimeSequencerProvider.java
+delete -path gervill\com\sun\media\sound\SF2SoundbankReader.java
+delete -path gervill\com\sun\media\sound\SimpleInstrument.java
+delete -path gervill\com\sun\media\sound\SimpleSoundbank.java
+delete -path gervill\com\sun\media\sound\SoftMidiAudioFileReader.java
+delete -path gervill\com\sun\media\sound\SoftProvider.java
+delete -path gervill\com\sun\media\sound\SoftShortMessage.java
+delete -path gervill\com\sun\media\sound\StandardMidiFileReader.java
+delete -path gervill\com\sun\media\sound\StandardMidiFileWriter.java
+delete -path gervill\com\sun\media\sound\SunCodec.java
+delete -path gervill\com\sun\media\sound\SunFileReader.java
+delete -path gervill\com\sun\media\sound\SunFileWriter.java
+delete -path gervill\com\sun\media\sound\UlawCodec.java
+delete -path gervill\com\sun\media\sound\WaveExtensibleFileReader.java
+delete -path gervill\com\sun\media\sound\WaveFileFormat.java
+delete -path gervill\com\sun\media\sound\WaveFileReader.java
+delete -path gervill\com\sun\media\sound\WaveFileWriter.java
+delete -path gervill\com\sun\media\sound\WaveFloatFileReader.java
+delete -path gervill\com\sun\media\sound\WaveFloatFileWriter.java
+delete -path gervill\java\applet\AudioClip.java
+delete -path gervill\javax\sound\sampled\EnumControl.java
+delete -path gervill\javax\sound\sampled\ReverbType.java
+
+delete -path gervill\java\

@@ -23,7 +23,7 @@ if ($j) {
 	$deleteShortcut="delete-classes-java.lnk"
 	$modifyAudioSystemShortcut="modifyAudioSystem-java.lnk"
 	$mainAppFolder="gervilljava"
-	cmd.exe /c gi java,intellij,windows > .gitignore
+	cmd.exe /c gi java,intellij+all,windows > .gitignore
 } elseif ($a) {
 	$basePath="app\src\main\java"
 	$deleteShortcut="delete-classes-android.lnk"
@@ -36,6 +36,7 @@ if ($j) {
 	Throw "Missing flag"
 }
 
+Read-Host -Prompt "Press Enter to continue"
 
 reset -sourcePath src\gervill\ -destinationPath gervill\
 reset -sourcePath src\$mainAppFolder\ -destinationPath own\

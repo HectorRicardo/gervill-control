@@ -1,4 +1,4 @@
-package gervilljava.impl;
+package own.impl;
 
 import gervill.javax.sound.sampled.AudioFormat;
 import gervill.javax.sound.sampled.Control;

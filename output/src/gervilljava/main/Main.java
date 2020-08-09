@@ -1,4 +1,4 @@
-package gervilljava.main;
+package own.main;
 
 import gervill.com.sun.media.sound.DLSSoundbank;
 import gervill.com.sun.media.sound.SF2Soundbank;

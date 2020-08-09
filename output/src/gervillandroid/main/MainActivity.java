@@ -1,4 +1,4 @@
-package gervillandroid.main;
+package own.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 

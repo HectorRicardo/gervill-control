@@ -1,4 +1,4 @@
-package gervillandroid.impl;
+package own.impl;
 
 import android.media.AudioManager;
 import android.media.AudioTrack;

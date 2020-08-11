@@ -32,7 +32,7 @@ if ($j) {
 	$basePath="src"
 	$modifyAudioSystemShortcut="modifyAudioSystem-java.lnk"
 	$mainAppFolder="gervilljava"
-	gig java,eclipse,windows
+	gig java,intellij,eclipse,windows
 } elseif ($a) {
 	$basePath="app\src\main\java"
 	$modifyAudioSystemShortcut="modifyAudioSystem-android.lnk"
@@ -46,9 +46,10 @@ if ($j) {
 
 Read-Host -Prompt "Press Enter to continue"
 
+
+reset -sourcePath assets\ -destinationPath ..\assets\
 reset -sourcePath src\gervill\ -destinationPath gervill\
 reset -sourcePath src\$mainAppFolder\ -destinationPath own\
-reset -sourcePath src\samplesynth\ -destinationPath samplesynth\
-reset -sourcePath assets\ -destinationPath ..\assets\
+Copy-Item $sourceRoot\src\SynthesizerPlayer.java $basePath\own\main\SynthesizerPlayer.java
 
 Copy-Item $sourceRoot\shortcuts\$modifyAudioSystemShortcut $modifyAudioSystemShortcut

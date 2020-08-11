@@ -12,7 +12,6 @@ import java.text.MessageFormat;
 import gervill.com.sun.media.sound.DLSSoundbank;
 import gervill.com.sun.media.sound.SF2Soundbank;
 import gervill.javax.sound.midi.Soundbank;
-import samplesynth.SynthesizerPlayer;
 
 public class MainActivity extends AppCompatActivity {
 

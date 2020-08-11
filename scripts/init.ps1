@@ -30,13 +30,11 @@ function reset {
 
 if ($j) {
 	$basePath="src"
-	$deleteShortcut="delete-classes-java.lnk"
 	$modifyAudioSystemShortcut="modifyAudioSystem-java.lnk"
 	$mainAppFolder="gervilljava"
 	gig java,eclipse,windows
 } elseif ($a) {
 	$basePath="app\src\main\java"
-	$deleteShortcut="delete-classes-android.lnk"
 	$modifyAudioSystemShortcut="modifyAudioSystem-android.lnk"
 	$mainAppFolder="gervillandroid"
 	gig android,AndroidStudio,windows
@@ -53,5 +51,4 @@ reset -sourcePath src\$mainAppFolder\ -destinationPath own\
 reset -sourcePath src\samplesynth\ -destinationPath samplesynth\
 reset -sourcePath assets\ -destinationPath ..\assets\
 
-Copy-Item $sourceRoot\shortcuts\$deleteShortcut $deleteShortcut
 Copy-Item $sourceRoot\shortcuts\$modifyAudioSystemShortcut $modifyAudioSystemShortcut

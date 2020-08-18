@@ -16,7 +16,6 @@ public class SourceDataLineImpl implements SourceDataLine {
     private AudioFormat format;
 
     public SourceDataLineImpl(AudioFormat format) {
-        this.format = format;
     }
 
     @Override
@@ -151,14 +150,13 @@ public class SourceDataLineImpl implements SourceDataLine {
     public void open() throws LineUnavailableException {
         // Get the smallest buffer to minimize latency.
         int sampleRateInHz = (int) format.getSampleRate();
-        // int sampleSizeInBit = format.getSampleSizeInBits();
         int channelConfig;
         if (format.getChannels() == 1) {
             channelConfig = android.media.AudioFormat.CHANNEL_OUT_MONO;
         } else if (format.getChannels() == 2) {
             channelConfig = android.media.AudioFormat.CHANNEL_OUT_STEREO;
         } else {
-            throw new IllegalArgumentException("format.getChannels() must in (1,2)");
+            throw new IllegalArgumentException("Only 1 or 2 channels allowed"));
         }
 
         int bufferSizeInBytes = AudioTrack.getMinBufferSize(sampleRateInHz,
@@ -176,14 +174,13 @@ public class SourceDataLineImpl implements SourceDataLine {
         this.format = format;
         this.bufferSize = bufferSize;
         int sampleRateInHz = (int) format.getSampleRate();
-        // int sampleSizeInBit = format.getSampleSizeInBits();
         int channelConfig;
         if (format.getChannels() == 1) {
             channelConfig = android.media.AudioFormat.CHANNEL_OUT_MONO;
         } else if (format.getChannels() == 2) {
             channelConfig = android.media.AudioFormat.CHANNEL_OUT_STEREO;
         } else {
-            throw new IllegalArgumentException("format.getChannels() must in (1,2)");
+            throw new IllegalArgumentException("Only 1 or 2 channels allowed");
         }
         audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRateInHz,
                 channelConfig, android.media.AudioFormat.ENCODING_PCM_16BIT,
@@ -195,14 +192,13 @@ public class SourceDataLineImpl implements SourceDataLine {
         // Get the smallest buffer to minimize latency.
         this.format = format;
         int sampleRateInHz = (int) format.getSampleRate();
-        // int sampleSizeInBit = format.getSampleSizeInBits();
         int channelConfig;
         if (format.getChannels() == 1) {
             channelConfig = android.media.AudioFormat.CHANNEL_OUT_MONO;
         } else if (format.getChannels() == 2) {
             channelConfig = android.media.AudioFormat.CHANNEL_OUT_STEREO;
         } else {
-            throw new IllegalArgumentException("format.getChannels() must in (1,2)");
+            throw new IllegalArgumentException("Only 1 or 2 channels allowed"));
         }
         int bufferSizeInBytes = AudioTrack.getMinBufferSize(sampleRateInHz,
                 channelConfig, android.media.AudioFormat.ENCODING_PCM_16BIT);

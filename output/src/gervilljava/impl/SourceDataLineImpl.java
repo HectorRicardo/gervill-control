@@ -4,51 +4,33 @@ import gervill.javax.sound.sampled.AudioFormat;
 import gervill.javax.sound.sampled.Control;
 import gervill.javax.sound.sampled.Line;
 import gervill.javax.sound.sampled.LineListener;
-import gervill.javax.sound.sampled.LineUnavailableException;
 import gervill.javax.sound.sampled.SourceDataLine;
+
+import javax.sound.sampled.LineUnavailableException;
 
 public class SourceDataLineImpl implements SourceDataLine {
 
 	private final javax.sound.sampled.SourceDataLine realLine;
 
-	public SourceDataLineImpl(AudioFormat format) throws LineUnavailableException {
+	public SourceDataLineImpl(AudioFormat format) {
 		try {
-			realLine = javax.sound.sampled.AudioSystem.getSourceDataLine(convertToOriginalFormat(format));
-		} catch (javax.sound.sampled.LineUnavailableException e) {
-			throw new LineUnavailableException(e.getMessage());
-		}
-	}
-
-	private static javax.sound.sampled.AudioFormat convertToOriginalFormat(AudioFormat format) {
-		javax.sound.sampled.AudioFormat.Encoding encoding = new javax.sound.sampled.AudioFormat.Encoding(
-				format.getEncoding().toString());
-		return new javax.sound.sampled.AudioFormat(encoding, format.getSampleRate(), format.getSampleSizeInBits(),
-				format.getChannels(), format.getFrameSize(), format.getFrameRate(), format.isBigEndian(),
-				format.properties());
-	}
-
-	private static AudioFormat convertToNewFormat(javax.sound.sampled.AudioFormat format) {
-		AudioFormat.Encoding encoding = new AudioFormat.Encoding(format.getEncoding().toString());
-		return new AudioFormat(encoding, format.getSampleRate(), format.getSampleSizeInBits(), format.getChannels(),
-				format.getFrameSize(), format.getFrameRate(), format.isBigEndian(), format.properties());
-	}
-
-	@Override
-	public void open(AudioFormat format, int bufferSize) throws LineUnavailableException {
-		try {
-			realLine.open(convertToOriginalFormat(format), bufferSize);
-		} catch (javax.sound.sampled.LineUnavailableException e) {
-			throw new LineUnavailableException(e.getMessage());
+			realLine = javax.sound.sampled.AudioSystem.getSourceDataLine(null);
+		} catch (LineUnavailableException e) {
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
 	@Override
-	public void open(AudioFormat format) throws LineUnavailableException {
+	public void open(AudioFormat format, int bufferSize) {
 		try {
-			realLine.open(convertToOriginalFormat(format));
-		} catch (javax.sound.sampled.LineUnavailableException e) {
-			throw new LineUnavailableException(e.getMessage());
+			realLine.open(new javax.sound.sampled.AudioFormat(format.getSampleRate(), 16, format.getChannels(), true, false), bufferSize);
+		} catch (LineUnavailableException e) {
+			throw new RuntimeException(e.getMessage());
 		}
+	}
+
+	@Override
+	public void open(AudioFormat format) {
 	}
 
 	@Override
@@ -88,7 +70,7 @@ public class SourceDataLineImpl implements SourceDataLine {
 
 	@Override
 	public AudioFormat getFormat() {
-		return convertToNewFormat(realLine.getFormat());
+		return null;
 	}
 
 	@Override
@@ -123,15 +105,15 @@ public class SourceDataLineImpl implements SourceDataLine {
 
 	@Override
 	public Line.Info getLineInfo() {
-		return new Line.Info(realLine.getLineInfo().getLineClass());
+		return null;
 	}
 
 	@Override
-	public void open() throws LineUnavailableException {
+	public void open() {
 		try {
 			realLine.open();
-		} catch (javax.sound.sampled.LineUnavailableException e) {
-			throw new LineUnavailableException(e.getMessage());
+		} catch (LineUnavailableException e) {
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 
@@ -147,7 +129,7 @@ public class SourceDataLineImpl implements SourceDataLine {
 
 	@Override
 	public Control[] getControls() {
-		return new Control[0];
+		return null;
 	}
 
 	@Override
@@ -162,11 +144,9 @@ public class SourceDataLineImpl implements SourceDataLine {
 
 	@Override
 	public void addLineListener(LineListener listener) {
-		// realLine.addLineListener(listener);
 	}
 
 	@Override
 	public void removeLineListener(LineListener listener) {
-		// realLine.removeLineListener(listener);
 	}
 }

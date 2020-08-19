@@ -13,7 +13,6 @@ import gervill.javax.sound.midi.Instrument;
 import gervill.javax.sound.midi.MidiChannel;
 import gervill.javax.sound.midi.Patch;
 import gervill.javax.sound.midi.Soundbank;
-import gervill.javax.sound.midi.Synthesizer;
 import gervill.javax.sound.midi.VoiceStatus;
 
 public class SynthesizerPlayer {
@@ -23,7 +22,7 @@ public class SynthesizerPlayer {
 
 	private static final int PORTAMENTO_LEVEL = 80;
 
-	private Synthesizer synthesizer;
+	private SoftSynthesizer synthesizer;
 	private Soundbank soundbank;
 	private MidiChannel channel;
 	private Instrument instrument;

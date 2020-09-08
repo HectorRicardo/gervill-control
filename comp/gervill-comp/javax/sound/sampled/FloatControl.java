@@ -78,12 +78,12 @@ public abstract class FloatControl extends Control {
      * @param precision the resolution or granularity of the control.
      * This is the size of the increment between discrete valid values.
      * @param updatePeriod the smallest time interval, in microseconds, over which the control
-     * can change from one discrete value to the next during a {@link #shift(float,float,int) shift}
+     * can change from one discrete value to the next during a  #shift(float,float,int) shift
      * @param initialValue the value that the control starts with when constructed
      * @param units the label for the units in which the control's values are expressed,
      * such as "dB" or "frames per second"
      *
-     * @throws IllegalArgumentException if {@code minimum} is greater
+     * throws IllegalArgumentException if {@code minimum} is greater
      *     than {@code maximum} or {@code initialValue} does not fall
      *     within the allowable range
      */
@@ -106,7 +106,7 @@ public abstract class FloatControl extends Control {
      * Some controls require that their line be open before they can be affected
      * by setting a value.
      * @param newValue desired new value
-     * @throws IllegalArgumentException if the value indicated does not fall
+     * throws IllegalArgumentException if the value indicated does not fall
      * within the allowable range
      */
     public void setValue(float newValue) {

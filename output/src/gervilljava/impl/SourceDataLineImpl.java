@@ -1,10 +1,6 @@
 package own.impl;
 
-import gervill.javax.sound.sampled.AudioFormat;
-import gervill.javax.sound.sampled.Control;
-import gervill.javax.sound.sampled.Line;
-import gervill.javax.sound.sampled.LineListener;
-import gervill.javax.sound.sampled.SourceDataLine;
+import gervill.javax.sound.sampled.*;
 
 import javax.sound.sampled.LineUnavailableException;
 

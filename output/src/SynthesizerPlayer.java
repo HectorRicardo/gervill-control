@@ -1,19 +1,15 @@
 package own.main;
 
+import gervill.com.sun.media.sound.DLSSoundbank;
+import gervill.com.sun.media.sound.SF2Soundbank;
+import gervill.com.sun.media.sound.SoftSynthesizer;
+import gervill.javax.sound.midi.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.MessageFormat;
-
-import gervill.com.sun.media.sound.DLSSoundbank;
-import gervill.com.sun.media.sound.SF2Soundbank;
-import gervill.com.sun.media.sound.SoftSynthesizer;
-import gervill.javax.sound.midi.Instrument;
-import gervill.javax.sound.midi.MidiChannel;
-import gervill.javax.sound.midi.Patch;
-import gervill.javax.sound.midi.Soundbank;
-import gervill.javax.sound.midi.VoiceStatus;
 
 public class SynthesizerPlayer {
 

@@ -134,7 +134,7 @@ public class MidiSystem {
                 if (mue != null) {
                     throw mue;
                 }
-                throw new RuntimeException("no receiver available");
+                throw new MidiUnavailableException("no receiver available");
             }
         }
         return seq;
@@ -159,7 +159,7 @@ public class MidiSystem {
                 return s;
             }
         }
-        throw new RuntimeException("cannot get soundbank from stream");
+        throw new InvalidMidiDataException("cannot get soundbank from stream");
 
     }
 
@@ -180,7 +180,7 @@ public class MidiSystem {
                 return s;
             }
         }
-        throw new RuntimeException("cannot get soundbank from stream");
+        throw new InvalidMidiDataException("cannot get soundbank from stream");
 
     }
 
@@ -201,7 +201,7 @@ public class MidiSystem {
                 return s;
             }
         }
-        throw new RuntimeException("cannot get soundbank from stream");
+        throw new InvalidMidiDataException("cannot get soundbank from stream");
     }
 
 
@@ -223,7 +223,7 @@ public class MidiSystem {
         }
 
         if( format==null ) {
-            throw new RuntimeException("input stream is not a supported file type");
+            throw new InvalidMidiDataException("input stream is not a supported file type");
         } else {
             return format;
         }
@@ -247,7 +247,7 @@ public class MidiSystem {
         }
 
         if( format==null ) {
-            throw new RuntimeException("url is not a supported file type");
+            throw new InvalidMidiDataException("url is not a supported file type");
         } else {
             return format;
         }
@@ -271,7 +271,7 @@ public class MidiSystem {
         }
 
         if( format==null ) {
-            throw new RuntimeException("file is not a supported file type");
+            throw new InvalidMidiDataException("file is not a supported file type");
         } else {
             return format;
         }
@@ -295,7 +295,7 @@ public class MidiSystem {
         }
 
         if( sequence==null ) {
-            throw new RuntimeException("could not get sequence from input stream");
+            throw new InvalidMidiDataException("could not get sequence from input stream");
         } else {
             return sequence;
         }
@@ -319,7 +319,7 @@ public class MidiSystem {
         }
 
         if( sequence==null ) {
-            throw new RuntimeException("could not get sequence from URL");
+            throw new InvalidMidiDataException("could not get sequence from URL");
         } else {
             return sequence;
         }
@@ -343,7 +343,7 @@ public class MidiSystem {
         }
 
         if( sequence==null ) {
-            throw new RuntimeException("could not get sequence from file");
+            throw new InvalidMidiDataException("could not get sequence from file");
         } else {
             return sequence;
         }

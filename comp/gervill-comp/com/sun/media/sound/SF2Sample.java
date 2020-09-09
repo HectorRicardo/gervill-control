@@ -29,11 +29,11 @@ public final class SF2Sample extends SoundbankResource {
                 fis = new FileInputStream(sampleFile);
                 RIFFReader riff = new RIFFReader(fis);
                 if (!riff.getFormat().equals("RIFF")) {
-                    throw new RuntimeException(
+                    throw new RIFFInvalidDataException(
                         "Input stream is not a valid RIFF stream!");
                 }
                 if (!riff.getType().equals("sfbk")) {
-                    throw new RuntimeException(
+                    throw new RIFFInvalidDataException(
                         "Input stream is not a valid SoundFont!");
                 }
                 while (riff.hasNextChunk()) {

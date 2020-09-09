@@ -151,7 +151,7 @@ public class Sequence {
             this.divisionType = SMPTE_30DROP;
         else if (divisionType == SMPTE_30)
             this.divisionType = SMPTE_30;
-        else throw new RuntimeException("Unsupported division type: " + divisionType);
+        else throw new InvalidMidiDataException("Unsupported division type: " + divisionType);
 
         this.resolution = resolution;
     }
@@ -197,7 +197,7 @@ public class Sequence {
             this.divisionType = SMPTE_30DROP;
         else if (divisionType == SMPTE_30)
             this.divisionType = SMPTE_30;
-        else throw new RuntimeException("Unsupported division type: " + divisionType);
+        else throw new InvalidMidiDataException("Unsupported division type: " + divisionType);
 
         this.resolution = resolution;
 

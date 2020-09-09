@@ -1081,7 +1081,7 @@ public final class SoftSynthesizer implements AudioSynthesizer,
             Map<String, Object> info) throws MidiUnavailableException {
 
         if (isOpen())
-            throw new RuntimeException("Synthesizer is already open");
+            throw new MidiUnavailableException("Synthesizer is already open");
 
         synchronized (control_mutex) {
 
@@ -1261,7 +1261,7 @@ public final class SoftSynthesizer implements AudioSynthesizer,
 
     public Transmitter getTransmitter() throws MidiUnavailableException {
 
-        throw new RuntimeException("No transmitter available");
+        throw new MidiUnavailableException("No transmitter available");
     }
 
     public List<Transmitter> getTransmitters() {
@@ -1285,6 +1285,6 @@ public final class SoftSynthesizer implements AudioSynthesizer,
     public Transmitter getTransmitterReferenceCounting()
             throws MidiUnavailableException {
 
-        throw new RuntimeException("No transmitter available");
+        throw new MidiUnavailableException("No transmitter available");
     }
 }

@@ -212,11 +212,11 @@ public final class DLSSoundbank implements Soundbank {
     private void readSoundbank(InputStream inputstream) throws IOException {
         RIFFReader riff = new RIFFReader(inputstream);
         if (!riff.getFormat().equals("RIFF")) {
-            throw new RuntimeException(
+            throw new RIFFInvalidFormatException(
                     "Input stream is not a valid RIFF stream!");
         }
         if (!riff.getType().equals("DLS ")) {
-            throw new RuntimeException(
+            throw new RIFFInvalidFormatException(
                     "Input stream is not a valid DLS soundbank!");
         }
         while (riff.hasNextChunk()) {
@@ -231,7 +231,7 @@ public final class DLSSoundbank implements Soundbank {
             } else {
                 if (chunk.getFormat().equals("cdl ")) {
                     if (!readCdlChunk(chunk)) {
-                        throw new RuntimeException(
+                        throw new RIFFInvalidFormatException(
                                 "DLS file isn't supported!");
                     }
                 }
@@ -757,7 +757,7 @@ public final class DLSSoundbank implements Soundbank {
                 if (format.equals("fmt ")) {
                     int sampleformat = chunk.readUnsignedShort();
                     if (sampleformat != 1 && sampleformat != 3) {
-                        throw new RuntimeException(
+                        throw new RIFFInvalidDataException(
                                 "Only PCM samples are supported!");
                     }
                     int channels = chunk.readUnsignedShort();

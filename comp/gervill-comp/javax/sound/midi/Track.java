@@ -162,7 +162,7 @@ public class Track {
         }
 
         public void setMessage(int type, byte[] data, int length) throws InvalidMidiDataException {
-            throw new InvalidMidiDataException("cannot modify end of track message");
+            throw new RuntimeException("cannot modify end of track message");
         }
     }
 

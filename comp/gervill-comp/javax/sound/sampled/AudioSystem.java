@@ -441,7 +441,7 @@ public class AudioSystem {
         }
 
         if( format==null ) {
-            throw new UnsupportedAudioFileException("file is not a supported file type");
+            throw new RuntimeException("file is not a supported file type");
         } else {
             return format;
         }
@@ -464,7 +464,7 @@ public class AudioSystem {
         }
 
         if( format==null ) {
-            throw new UnsupportedAudioFileException("file is not a supported file type");
+            throw new RuntimeException("file is not a supported file type");
         } else {
             return format;
         }
@@ -487,7 +487,7 @@ public class AudioSystem {
         }
 
         if( format==null ) {
-            throw new UnsupportedAudioFileException("file is not a supported file type");
+            throw new RuntimeException("file is not a supported file type");
         } else {
             return format;
         }
@@ -511,7 +511,7 @@ public class AudioSystem {
         }
 
         if( audioStream==null ) {
-            throw new UnsupportedAudioFileException("could not get audio input stream from input stream");
+            throw new RuntimeException("could not get audio input stream from input stream");
         } else {
             return audioStream;
         }
@@ -534,7 +534,7 @@ public class AudioSystem {
         }
 
         if( audioStream==null ) {
-            throw new UnsupportedAudioFileException("could not get audio input stream from input URL");
+            throw new RuntimeException("could not get audio input stream from input URL");
         } else {
             return audioStream;
         }
@@ -557,7 +557,7 @@ public class AudioSystem {
         }
 
         if( audioStream==null ) {
-            throw new UnsupportedAudioFileException("could not get audio input stream from input file");
+            throw new RuntimeException("could not get audio input stream from input file");
         } else {
             return audioStream;
         }

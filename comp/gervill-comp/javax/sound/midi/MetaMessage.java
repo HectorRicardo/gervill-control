@@ -39,10 +39,10 @@ public class MetaMessage extends MidiMessage {
         public void setMessage(int type, byte[] data, int length) throws InvalidMidiDataException {
 
         if (type >= 128 || type < 0) {
-            throw new InvalidMidiDataException("Invalid meta event with type " + type);
+            throw new RuntimeException("Invalid meta event with type " + type);
         }
         if ((length > 0 && length > data.length) || length < 0) {
-            throw new InvalidMidiDataException("length out of bounds: "+length);
+            throw new RuntimeException("length out of bounds: "+length);
         }
 
         this.length = 2 + getVarIntLength(length) + length;

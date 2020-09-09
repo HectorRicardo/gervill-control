@@ -292,7 +292,7 @@ public class ShortMessage extends MidiMessage {
         // check for valid values
         int dataLength = getDataLength(status); // can throw InvalidMidiDataException
         if (dataLength != 0) {
-            throw new InvalidMidiDataException("Status byte; " + status + " requires " + dataLength + " data bytes");
+            throw new RuntimeException("Status byte; " + status + " requires " + dataLength + " data bytes");
         }
         setMessage(status, 0, 0);
     }
@@ -318,11 +318,11 @@ public class ShortMessage extends MidiMessage {
         int dataLength = getDataLength(status); // can throw InvalidMidiDataException
         if (dataLength > 0) {
             if (data1 < 0 || data1 > 127) {
-                throw new InvalidMidiDataException("data1 out of range: " + data1);
+                throw new RuntimeException("data1 out of range: " + data1);
             }
             if (dataLength > 1) {
                 if (data2 < 0 || data2 > 127) {
-                    throw new InvalidMidiDataException("data2 out of range: " + data2);
+                    throw new RuntimeException("data2 out of range: " + data2);
                 }
             }
         }
@@ -371,10 +371,10 @@ public class ShortMessage extends MidiMessage {
     public void setMessage(int command, int channel, int data1, int data2) throws InvalidMidiDataException {
         // check for valid values
         if (command >= 0xF0 || command < 0x80) {
-            throw new InvalidMidiDataException("command out of range: 0x" + Integer.toHexString(command));
+            throw new RuntimeException("command out of range: 0x" + Integer.toHexString(command));
         }
         if ((channel & 0xFFFFFFF0) != 0) { // <=> (channel<0 || channel>15)
-            throw new InvalidMidiDataException("channel out of range: " + channel);
+            throw new RuntimeException("channel out of range: " + channel);
         }
         setMessage((command & 0xF0) | (channel & 0x0F), data1, data2);
     }
@@ -490,7 +490,7 @@ public class ShortMessage extends MidiMessage {
         case 0xD0:
             return 1;
         default:
-            throw new InvalidMidiDataException("Invalid status byte: " + status);
+            throw new RuntimeException("Invalid status byte: " + status);
         }
     }
 }
